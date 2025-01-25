@@ -19,8 +19,8 @@ app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
 
-app.all('*', async (res, req, next) => {
-  next(new NotFoundError());
+app.all('*', async (res, req) => {
+  throw new NotFoundError();
 });
 
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
@@ -29,8 +29,9 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 
 const start = async () => {
   try {
-    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth:27017/auth');
-    console.log('Connected to MongoDB');
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
+
+    console.log
   } catch (err) {
     console.error(err);
   }
