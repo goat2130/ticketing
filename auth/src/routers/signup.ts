@@ -22,7 +22,7 @@ router.post(
       .withMessage('Password must be between 4 and 20 character')
   ],
   validateRequest,
-  // Added a data type to rea and res, because occurred an error
+  // Added a data type to rea and res, because occurred an error!
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const user = User.build({ email, password });
