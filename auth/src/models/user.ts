@@ -30,7 +30,19 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-});
+},
+  {
+    // When we send the user object back to the client, we don't want to send the password, version key and the id
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+        delete ret.__v;
+      }
+    }
+}
+);
 
 userSchema.pre('save', async function(done) {
   if (this.isModified('password')) {
