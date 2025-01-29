@@ -10,3 +10,4 @@ router.get('/api/users/currentuser', currentUser, (req, res) => {
 
 export { router as currentUserRouter };
 // Path: auth/src/middlewares/current-user.ts
+import { Request, Response, NextFunction } from 'express';
